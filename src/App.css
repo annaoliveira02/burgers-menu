@@ -1,38 +1,169 @@
+@import url('https://fonts.googleapis.com/css2?family=Bungee+Shade&family=Oleo+Script+Swash+Caps&family=Questrial&display=swap');
+
 .App {
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: #FF7878;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='100%25' height='100%25'%3E%3Cdefs%3E%3Cpattern id='p' width='100' height='100' patternUnits='userSpaceOnUse'%3E%3Cg id='a' data-color='fill' fill='%23FFFFFF'%3E%3Cpath d='M50-50h100V50H50z'%3E%3C/path%3E%3Cpath opacity='.5' d='M-50-50V50H50v100h100V-50z'%3E%3C/path%3E%3C/g%3E%3C/pattern%3E%3C/defs%3E%3Crect fill='url(%23p)' width='100%25' height='100%25'%3E%3C/rect%3E%3C/svg%3E");
+  background-size: cover;
+  background-position: center;
+  background-repeat: repeat;
+  width: 100vw;
+}
+
+h1 {
+  font-family: "Bungee Shade";
+  font-size: 50px;
+  text-transform: uppercase;
+  background-color: white;
+  padding: 40px 20px;
+  width: 75vw;
+  border: 8px double black;
+}
+
+h1 svg {
+  margin: 5px 0 0 0;
+}
+
+.searchBar {
+  background-color: white;
+  padding: 40px 20px;
+  width: 75vw;
+  border: 8px double black;
+}
+
+input {
+  padding: 10px;
+  border: 2px solid black;
+  margin-inline-end: 5px;
+}
+
+.searchButton {
+  padding: 10px;
+  font-size: 12px;
+  font-family: "Questrial", sans-serif;
+}
+
+.menu {
+  display: flex;
+  flex-wrap: wrap;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  margin: 15px 0;
+  background-color: white;
+  padding: 40px 20px;
+  width: 75vw;
+  border: 8px double black;
 }
 
-.App-link {
-  color: #61dafb;
+.productDisplay {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  margin-inline: 10px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.productDisplay p {
+  margin: 4px;
+  font-size: 14px;
+  font-family: "Questrial", sans-serif;
+  
+}
+
+.productDisplay h3 {
+  margin: 5px;
+  font-family: 'Oleo Script Swash Caps', cursive;
+  font-size: 24px;
+}
+
+.productDisplay img {
+  width: 150px;
+  border-radius: 200px;
+  margin-block-end: 5px;
+}
+
+.productDisplay img[alt="Guaraná"], img[alt="Fanta"], img[alt="Coca"] {
+  max-width: 80px;
+  border-radius: 0;
+}
+
+button {
+  padding: 10px;
+  font-family: "Questrial", sans-serif;
+  margin-block: 5px;
+  border-radius: 5px;
+  border: 2px solid black;
+}
+
+
+button:hover{
+  background-color: rgb(255, 184, 184);
+  border: 2px solid rgb(199, 40, 40);
+  border-radius: 5px;
+  transition: 0.3s;
+}
+
+button:active{
+  background-color: rgb(199, 40, 40);
+  border: 2px solid rgb(255, 184, 184);
+  border-radius: 5px;
+  transition: 0.2s;
+}
+
+.cart {
+  background-color: white;
+  padding: 40px 20px;
+  width: 75vw;
+  border: 8px double black;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.cartProduct {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  margin-inline: 10px;
+}
+
+.cartProduct h3 {
+  margin-block: 2px;
+  font-family: 'Oleo Script Swash Caps', cursive;
+}
+
+.cartProduct p {
+  margin-block: 2px;
+  font-family: "Questrial", sans-serif;
+}
+
+.cartPrice {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  margin-inline: 10px;
+}
+
+.cartPrice h3 {
+  font-size: 36px;
+  font-family: "Bungee Shade";
+  margin-block: 2px;
+}
+
+.cartPrice p {  
+  font-family: 'Oleo Script Swash Caps', cursive;
+  font-size: 20px;
+  margin-block: 0;
+}
+
+.cartButton {
+  padding: 5px;
+  font-size: 10px;
+  font-family: "Questrial", sans-serif;
 }
