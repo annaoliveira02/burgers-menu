@@ -15,7 +15,7 @@ import guarana from './images/guarana.png'
 
 function App() {
 
-  const [products, setProducts] = useState([
+  const products = [
     { id: 1, name: 'Hamburguer', category: 'Sanduíches', price: 7.99, image: hamburguer},
     { id: 2, name: 'X-Burguer', category: 'Sanduíches', price: 8.99, image: xBurguer},
     { id: 3, name: 'X-Salada', category: 'Sanduíches', price: 10.99, image: xSalada},
@@ -23,29 +23,39 @@ function App() {
     { id: 5, name: 'Guaraná', category: 'Bebidas', price: 4.99, image: guarana},
     { id: 6, name: 'Coca', category: 'Bebidas', price: 4.99, image: coca},
     { id: 7, name: 'Fanta', category: 'Bebidas', price: 4.99, image: fanta},
-  ]); 
+  ]; 
 
   const [filteredProducts, setFilteredProducts] = useState([]);
 
   const [currentSale, setCurrentSale] = useState([])
 
+  const [currentInput, setCurrentInput] = useState("")
+
+  const [message, setMessage] = useState([])
+
   const showProducts = (input) => {
-    if (input.length > 0){
-      let chosenProducts = products.filter(
-        product => product.name.toLowerCase() === input.toLowerCase()
-        || product.category.toLowerCase() === input.toLowerCase())
-      setProducts(chosenProducts)}
-      else {
-        setProducts([
-          { id: 1, name: 'Hamburguer', category: 'Sanduíches', price: 7.99, image: hamburguer},
-          { id: 2, name: 'X-Burguer', category: 'Sanduíches', price: 8.99, image: xBurguer},
-          { id: 3, name: 'X-Salada', category: 'Sanduíches', price: 10.99, image: xSalada},
-          { id: 4, name: 'Big Kenzie', category: 'Sanduíches', price: 16.99, image: bigKenzie},
-          { id: 5, name: 'Guaraná', category: 'Bebidas', price: 4.99, image: guarana},
-          { id: 6, name: 'Coca', category: 'Bebidas', price: 4.99, image: coca},
-          { id: 7, name: 'Fanta', category: 'Bebidas', price: 4.99, image: fanta},
-        ]);
+      if (input !== "") {
+      const chosenProducts = products.filter(product => {
+        return Object.values(product)
+          .join(" ")
+          .normalize("NFD")
+          .toLowerCase()
+          .includes(input.normalize("NFD").toLowerCase())});
+
+          console.log(chosenProducts)
+        if (chosenProducts.length < 1) {
+          setMessage(["Nenhum produto encontrado :("])
+          setFilteredProducts(chosenProducts)
+        } else {
+          setMessage([""])
+          setFilteredProducts(chosenProducts)
+        }
       }
+      else {
+        setMessage([""])
+        setFilteredProducts(products);
+      }
+      console.log(message)
   }
 
   const handleClick = (productId) => {
@@ -75,19 +85,24 @@ function App() {
   return (
     <div className="App">
       <header className="headerApp">
-        <h1><GiHamburger/> Retro Burger <GiFrenchFries/></h1>
+        <h1><GiHamburger/> Retrô Burger <GiFrenchFries/></h1>
       </header>
       <div className="searchBar">
-      <input
-        placeholder="Pesquisar..."
-        type="text"
-        value={filteredProducts}
-        onChange={(event) => setFilteredProducts(event.target.value)}
-      />
-        <button className="searchButton" onClick={() => showProducts(filteredProducts)}><FaSearch/></button>
+        <div className="searchInput">
+          <input 
+          placeholder="Pesquisar produto"
+          type="text"
+          value={currentInput}
+          onChange={(event) => {
+          setCurrentInput(event.target.value)
+          showProducts(event.target.value)}}
+          />
+          <div><FaSearch/></div>
+        </div>
       </div>
       <div className="menu">
-        <MenuContainer products={products} handleClick={handleClick}/>
+        <h2>{message}</h2>
+        <MenuContainer products={currentInput.length < 1 ? products : filteredProducts} handleClick={handleClick}/>
       </div>
       <div className="cart">
         <div className="cartPrice">

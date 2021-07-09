@@ -28,16 +28,32 @@ h1 svg {
 }
 
 .searchBar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: white;
   padding: 40px 20px;
   width: 75vw;
   border: 8px double black;
 }
 
-input {
+.searchInput {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 10px;
   border: 2px solid black;
   margin-inline-end: 5px;
+}
+
+input {
+  border: none;
+  font-family: "Questrial", sans-serif;
+  font-size: 16px;
+}
+
+textarea:focus, input:focus{
+  outline: none;
 }
 
 .searchButton {
